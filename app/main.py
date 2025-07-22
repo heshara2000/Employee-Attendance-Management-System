@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from app import models, database, auth
-from app.routes import auth, attendance
-#from app.routes import auth 
+from app.routes import auth, attendance, admin
+
 
 # Create tables
 models.Base.metadata.create_all(bind=database.engine)
@@ -14,4 +14,4 @@ app = FastAPI(
 # Include routers
 app.include_router(auth.router)
 app.include_router(attendance.router)
-#app.include_router(admin.router)
+app.include_router(admin.router)
