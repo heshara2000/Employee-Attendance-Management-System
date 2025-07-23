@@ -7,7 +7,7 @@ from app.routes import auth, attendance, admin
 models.Base.metadata.create_all(bind=database.engine)
 
 app = FastAPI(
-    title="Employee Attendance Management API",
+    title="Employee Attendance Management System",
     version="1.0.0"
 )
 
