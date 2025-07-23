@@ -1,19 +1,20 @@
-#Dockerfile
-FROM python:3.11-slim
+# Use an official Python image
+FROM python:3.12-slim
 
-#set working directory
+# Set working directory
 WORKDIR /app
 
-#Install dependencies
+# Copy requirements first (for Docker layer caching)
 COPY requirements.txt .
+
+# Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-#Copy project files
-COPY . .
+# Copy the rest of the app code
+COPY ./app /app
 
-#Expose port
+# Expose FastAPI port
 EXPOSE 8000
 
-#Command to run the app
+# Run the application
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
-
