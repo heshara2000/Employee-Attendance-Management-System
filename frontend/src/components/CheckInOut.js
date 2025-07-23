@@ -5,17 +5,17 @@ const CheckInOut =() =>{
     const [checkInTime, setCheckInTime] = useState('');
     const [checkOutTime, setCheckOutTime] = useState('');
     const [error, setError] = useState('');
-    const [message, setMessage] = useState('');
+    //const [message, setMessage] = useState('');
     
     const handleCheckIn = async () => {
         setError('');
         try {
         const res = await API.post('/attendance/check-in');
-        setMessage(res.data.message || 'Checked in successfully');
+        //setMessage(res.data.message || 'Checked in successfully');
         setCheckInTime(res.data.check_in_time);
         } catch (err) {
         setError('Check-in failed');
-        setMessage('');
+        //setMessage('');
         }
     };
     
@@ -23,11 +23,11 @@ const CheckInOut =() =>{
         setError('');
         try {
         const res = await API.post('/attendance/check-out');
-        setMessage(res.data.message || 'Checked out successfully');
+        //setMessage(res.data.message || 'Checked out successfully');
         setCheckOutTime(res.data.check_out_time);
         } catch (err) {
         setError('Check-out failed');
-        setMessage('');
+        //setMessage('');
         }
     };
     
