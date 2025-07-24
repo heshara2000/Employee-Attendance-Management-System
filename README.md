@@ -21,11 +21,16 @@ This project is a simplified RESTful API system for managing employee attendance
 
 ## Project Structure
 Employee-Attendance-Management-System/
-├── app/ # FastAPI backend code and Dockerfile
-├── frontend/ # React frontend code and Dockerfile
-├── docker-compose.yml # Docker Compose to run backend, frontend, and database
-├── README.md # This documentation
-└── ... other config files
+├── app/ # FastAPI backend source code
+│ ├── main.py # FastAPI entry point
+│ └── ... # models, routes, auth logic
+├── frontend/ # React frontend code
+│ ├── Dockerfile # Dockerfile for frontend
+│ └── ... # components, pages, etc.
+├── Dockerfile # Dockerfile for backend 
+├── docker-compose.yml 
+├── README.md 
+└── requirements.txt # Python dependencies
 
 
 ---
@@ -59,6 +64,7 @@ Frontend UI: http://localhost:3000
 
 Backend API docs (Swagger UI): http://localhost:8000/docs
 
+Start the PostgreSQL database
 
 Usage
 Login as an employee or admin
