@@ -9,7 +9,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchRecords = async () => {
       try {
-        const res = await API.get('/admin/attendance');
+        const res = await API.get('/admin/attendance-logs');
         setRecords(res.data);
       } catch (err) {
         setError(err.response?.data?.detail || 'Failed to load admin records');
