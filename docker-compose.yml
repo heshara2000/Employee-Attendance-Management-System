@@ -1,12 +1,57 @@
+# # version: "3.9"
+
+# services:
+#   db:
+#     image: postgres:16
+#     container_name: postgres_db
+#     environment:
+#       POSTGRES_USER: postgres
+#       POSTGRES_PASSWORD: 12345678
+#       POSTGRES_DB: attendance_db
+#     volumes:
+#       - postgres_data:/var/lib/postgresql/data
+#     ports:
+#       - "5432:5432"
+
+#   backend:
+#     build:
+#       context: .
+#       dockerfile: Dockerfile
+#     container_name: fastapi_app
+#     depends_on:
+#       - db
+#     environment:
+#       DATABASE_URL: postgresql://postgres:12345678@db:5432/attendance_db
+#       #SECRET_KEY: your-secret-key
+#       ALGORITHM: HS256
+#     ports:
+#       - "8000:8000"
+#     volumes:
+#       - ./app:/app
+
+#   frontend:
+#     build:
+#       context: ./frontend
+#       dockerfile: Dockerfile
+#     container_name: react_frontend
+#     ports:
+#       - "3000:80"
+#     depends_on:
+#       - backend
+
+# volumes:
+#   postgres_data:
+
+
 version: "3.9"
 
 services:
   db:
-    image: postgres:14
+    image: postgres:16
     container_name: postgres_db
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_PASSWORD: 12345678
       POSTGRES_DB: attendance_db
     volumes:
       - postgres_data:/var/lib/postgresql/data
@@ -16,17 +61,27 @@ services:
   backend:
     build:
       context: .
+      dockerfile: Dockerfile
     container_name: fastapi_app
     depends_on:
       - db
     environment:
-      DATABASE_URL: postgresql://postgres:postgres@db:5432/attendance_db
-      SECRET_KEY: your-secret-key
+      DATABASE_URL: postgresql://postgres:12345678@db:5432/attendance_db
       ALGORITHM: HS256
     ports:
       - "8000:8000"
     volumes:
-      - ./app:/app
+      - .:/code
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: react_frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
 
 volumes:
   postgres_data:
